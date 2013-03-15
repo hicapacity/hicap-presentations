@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>JavaScript: Now and Beyond by James Wang - 2013.3.14</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/beige.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+					<h1>JavaScript: Now and Beyond</h1>
+					<p>
+          <small>Created by <a href="#">James Wang</a> /
+            <a href="http://twitter.com/wangbus">@wangbus</a></small>
+          <br/>
+          <small>2013.3.14 @ hicap/tbj oudl hq</small>
+					</p>
+				</section>
+
+				<section>
+					<h2>Introduction to Wangbus...</h2>
+          <pre><code contenteditable style="font-size: 18px; margin-top: 20px;">
+            console.log("Hello World");
+					</code></pre>
+          <p>
+          <small>ex-FOB, Homegrown local + bay technologist.</small>
+          <br/>
+          <small>Geek, gamer, doer, professional (I think...)</small>
+          <br/>
+          <small>Node.js, Rails, iOS, JVM Technologies, etc.</small>
+          <br/>
+          <small>Founder/CTO at Slickage - Web/Mobile Development</small>
+          <br/>
+          <small>Co-Founder at HI Capacity - Hackerspace/Makerspace</small>
+          <br/>
+          <small>Senior Software Engineer at Splashtop - FileFly/Splashtop
+            RD</small>
+          </p>
+				</section>
+				
+				<section>
+					<h2>History</h2>
+          <p><i>"When I was a young journeyman programmer, I would learn about
+          every feature of the languages I was using, and I would attempt to
+          use all of those features when I wrote. I suppose it was a way of
+          showing off, and I suppose it worked because I was the guy you went
+          to if you wanted to know how to use a particular feature."</i></p>
+          <p>-Douglas Crockford</p>
+				</section>
+
+        <section>
+          <section>
+          <h2>Bad News First</h2>
+          </section>
+          <section>
+            <h2>The Awful (Cope)</h2>
+            <p>
+              Global Variables,
+              Scope,
+              Semicolon Insertion,
+              Reserved Words,
+              Unicode,
+              typeof,
+              parseInt,
+              +,
+              Floating Point,
+              NaN,
+              Phony Arrays,
+              Falsy Values,
+              hasOwnProperty,
+              Object
+            </p>
+          </section>
+          <section>
+            <h2>The Bad (Easily Avoided)</h2>
+            <p>
+              ==,
+              with Statement,
+              eval,
+              continue Statement,
+              switch Fall Through,
+              Block-less Statements,
+              ++ --,
+              Bitwise Operators,
+              The function Statement Versus the function Expression,
+              Typed Wrappers,
+              new,
+              void
+            </p>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Positive Light - Beautiful Featues</h2>
+            <p>
+              Functions as first class objects<br/>
+              Dynamic objects with prototypal inheritance<br/>
+              Object literals and array literals<br/>
+              Closures<br/>
+              JSON<br/>
+            </p>
+          </section>
+          <section>
+            <h2>Prototypal Inheritance</h2>
+            <pre>>
+              <code contenteditable style="font-size: 18px; margin-top: 20px;">
+              var myMammal = {
+                  name : 'Herb the Mammal',
+                  getName : function () { return this.name; },
+                  says : function () { return this.saying || ''; }
+              };
+              
+              if (typeof Object.beget !== 'function') {
+                  Object.beget = function (o) {
+                      var F = function () {};
+                      F.prototype = o;
+                      return new F();
+                  };
+              }
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h2>Differential</h2>
+            <pre>
+              <code contenteditable style="font-size: 18px; margin-top: 20px;">
+              var myCat = Object.beget(myMammal);
+              myCat.name = 'Henrietta';
+              myCat.saying = 'meow';
+              myCat.purr = function (n) {
+                  var i, s = '';
+                  for (i = 0; i < n; i += 1) {
+                      if (s) {
+                          s += '-';
+                      }
+                      s += 'r';
+                  }
+                  return s;
+              };
+              myCat.get_name = function (  ) {
+                  return this.says + ' ' + this.name + ' ' + this.says;
+              };
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h2>Closure Example</h2>
+            <pre>
+              <code contenteditable style="font-size: 18px; margin-top: 20px;">
+              var myObject = function () {
+                  var value = 0;
+
+                  return {
+                      increment: function (inc) {
+                          value += 1;
+                      },
+                      getValue: function () {
+                          return value;
+                      }
+                  }
+              }(  );
+              </code>
+            </pre>
+          </section>
+        </section>
+				
+				<section>
+					<section>
+						<h2>Sanity</h2>
+            <p>
+              JSLint<br/>
+              Underscore<br/>
+              Stack Overflow (beware)<br/>
+              Testing - Mocha, TAP, etc.
+            </p>
+					</section>
+        </section>
+        <section>
+					<section>
+						<h2>JavaScript in Practice and Production</h2>
+            <p>
+							JQuery - General DOM manipulation, cross-browser<br/>
+              Angular.js - New age, declarative, cross-browser<br/>
+              Node.js - V8 Javascript on the server-side<br/>
+						<p>
+          </section>
+          <section>
+            <h2>Browser Javascript Fundamentals</h2>
+            <p>
+              Addresses cross-browser support<br/>
+              Addresses that DOM is slow and problematic<br/>
+              Web-service calls<br/>
+              Reloads suck: Push-state, url fragment, PJAX<br/>
+              Newer age: WebGL, WebRTC
+            </p>
+          </section>
+          <section>
+            <h2>Advanced: Asynchronous Programming</h2>
+            <p>
+              Callback HELL: future, promise and delay<br/>
+              Non-blocking IO (Node)<br/>
+              Observability (DTrace)<br/>
+            </p>
+          </section>
+				</section>
+
+        <section>
+          <h2>Let's see some code!</h2>
+          <p>
+            Browser, server-side<br/>
+            JQuery, Angular.js, Node.js<br/>
+            Websockets<br/>
+          </p>
+				<section>
+					<h2>More to come...</h2>
+					<p>
+          Talks: Javascript, Clojure, Rails, Node, etc...<br/>
+          Sessions for general hackathon prep.<br/>
+          Demo oriented meetups.
+          </p>
+				</section>
+				
+				<section>
+					<h2>Project Ideas</h2>
+					<p>
+						Hawaii Open Data<br/>
+          	data.honolulu.gov<br/>
+						Infochimps Data Marketplace - http://www.infochimps.com/marketplace<br/>
+						Public social networking APIs.<br/>
+            d3<br/>
+					</p>
+				</section>
+				
+				<section>
+					<h2>Conclusion</h2>
+					<p>
+          Life-long learning<br/>
+          Ever changing tech landscape<br/>
+          Keep up!
+          </p>
+				</section>
+
+				<section>
+					<h1>THE END</h1>
+					<h3>BY James Wang / <a href="http://twitter.com/wangbus">@wangbus</a></h3>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
